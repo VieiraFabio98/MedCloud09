@@ -1,8 +1,8 @@
+import { AppError } from "../../../../shared/infra/errors/appError"
 import { getRepository, Repository } from "typeorm"
 import { ICreatePatientDTO } from "../../DTO/ICreatePatientDTO"
 import { IPatientRepository } from "../../repositories/IPatientRepository"
 import { Patient } from "../entities/Patient"
-
 
 
 class PatientRepository implements IPatientRepository{
@@ -11,6 +11,33 @@ class PatientRepository implements IPatientRepository{
 
   constructor(){
     this.repository = getRepository(Patient)
+  }
+
+  async updatePatient({
+    id,
+    name,
+    address,
+    email,
+    birth_date
+  }:ICreatePatientDTO): Promise<Patient> {
+    const patient = await this.repository.findOne(id)
+
+    if(!patient){
+      console.log("patient not found")
+    }
+
+    const patientUpdate = this.repository.create({
+      id,
+      name,
+      address,
+      email,
+      birth_date
+    })
+
+    await this.repository.save(patientUpdate)
+
+    return patientUpdate
+     
   }
   
   async create({
@@ -51,3 +78,7 @@ class PatientRepository implements IPatientRepository{
 }
 
 export { PatientRepository }
+
+function ok(patientUpdate: Patient): Patient | PromiseLike<Patient> {
+  throw new Error("Function not implemented.")
+}

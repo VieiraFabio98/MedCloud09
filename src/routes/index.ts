@@ -6,3 +6,4 @@ export const router = Router();
 router.use("/createpatient", patientRoutes)
 router.use("/listpatient", patientRoutes)
 router.use("/deletepatient", patientRoutes)
+router.use("/updatepatient", patientRoutes)
