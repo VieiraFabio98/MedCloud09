@@ -1,5 +1,5 @@
-import { Patient } from "@modules/patient/typeorm/entities/Patient";
-import { PatientRepository } from "../../typeorm/repositories/PatientRepository"
+import { Patient } from "../../typeorm/entities/Patient"
+import { IPatientRepository } from "../../repositories/IPatientRepository"
 import { inject, injectable } from "tsyringe";
 
 
@@ -7,8 +7,8 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class DeletePatientUseCase {
   constructor(
-    @inject("PatientRepostory")
-    private patientRepository: PatientRepository
+    @inject("PatientRepository")
+    private patientRepository: IPatientRepository
   ){}
 
   async execute(id: string): Promise<Patient>{
