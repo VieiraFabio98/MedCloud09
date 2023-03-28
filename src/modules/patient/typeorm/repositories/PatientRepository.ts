@@ -74,11 +74,14 @@ class PatientRepository implements IPatientRepository{
    
   }
 
+  async findById(id: string): Promise<Patient>{
+    const patient = await this.repository.findOne(id)
+    return patient
+  }
+
 
 }
 
 export { PatientRepository }
 
-function ok(patientUpdate: Patient): Patient | PromiseLike<Patient> {
-  throw new Error("Function not implemented.")
-}
+

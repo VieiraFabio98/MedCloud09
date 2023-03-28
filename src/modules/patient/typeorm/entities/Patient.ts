@@ -19,6 +19,9 @@ class Patient {
   @Column()
   address: string;
 
+  @Column()
+  is_admin: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
