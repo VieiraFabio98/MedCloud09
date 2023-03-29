@@ -8,12 +8,14 @@ export async function ensureAdmin(
   response: Response,
   next: NextFunction
 ){
-  const { id } = request.user
+  const { id } = request.patient
   const patientRepository = new PatientRepository
   const admin = await patientRepository.findById(id)
 
   if(!admin.is_admin){
     throw new AppError("User isn't admin")
   }
+
+  return next()
 
 }

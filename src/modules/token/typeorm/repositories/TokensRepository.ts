@@ -1,12 +1,17 @@
+import { ICreateTokenDTO } from "../../../../modules/token/DTO/ICreateToken";
 import { ITokensRepository } from "modules/token/repositories/ITokensRepository";
-import { Repository } from "typeorm";
-import { PatientTokens } from "../entities/Token";
+import { getRepository, Repository } from "typeorm";
+import { PatientTokens } from "../entities/PatientToken";
 
 
 
 class TokensRepository implements ITokensRepository{
 
   private repository: Repository<PatientTokens>
+
+  constructor(){
+    this.repository = getRepository(PatientTokens)
+  }
   
   async create({ expires_date, refresh_token, patient_id }: ICreateTokenDTO): Promise<PatientTokens> {
     const patientToken = this.repository.create({

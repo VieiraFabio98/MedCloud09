@@ -79,6 +79,11 @@ class PatientRepository implements IPatientRepository{
     return patient
   }
 
+  async findByEmail(email: string): Promise<Patient>{
+    const patient = await this.repository.findOne({email})
+
+    return patient
+  }
 
 }
 

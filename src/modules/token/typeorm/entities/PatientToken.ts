@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid"
 import { Patient } from "../../../patient/typeorm/entities/Patient"
 
@@ -6,7 +6,7 @@ import { Patient } from "../../../patient/typeorm/entities/Patient"
 @Entity("tokens")
 class PatientTokens{
 
-  @Column()
+  @PrimaryColumn()
   id?: string;
 
   @Column()

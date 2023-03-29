@@ -20,6 +20,9 @@ class Patient {
   address: string;
 
   @Column()
+  senha: string
+
+  @Column()
   is_admin: boolean;
 
   @CreateDateColumn()

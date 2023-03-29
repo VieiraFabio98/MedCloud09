@@ -4,6 +4,9 @@ import { CreatePatientController } from '../../modules/patient/useCase/createPat
 import { DeletePatientController } from '../../modules/patient/useCase/deletePatient/DeletePatientController'
 import { UpdatePatientController } from '../../modules/patient/useCase/updatePatient/UpdatePatientController'
 import { ensureAdmin } from '../infra/middlewares/ensureAdmin'
+import { ensureAuthenticated } from '../../shared/infra/middlewares/ensureAuthenticated'
+
+
 
 
 const patientRoutes = Router()
@@ -11,12 +14,14 @@ const patientRoutes = Router()
 const createPatientController = new CreatePatientController()
 const listPatientController = new ListPatientController()
 const deletePatientController = new DeletePatientController()
-
 const updatePatientController = new UpdatePatientController()
 
-patientRoutes.post("/", createPatientController.handle)
-patientRoutes.get("/", listPatientController.handle)
-patientRoutes.delete("/:id", deletePatientController.handle)
-patientRoutes.put("/:id", updatePatientController.handle)
+patientRoutes.post("/", ensureAuthenticated, ensureAdmin, createPatientController.handle)
+
+patientRoutes.get("/", ensureAuthenticated, ensureAdmin, listPatientController.handle)
+
+patientRoutes.delete("/:id", ensureAuthenticated, ensureAdmin, deletePatientController.handle)
+
+patientRoutes.put("/:id", ensureAuthenticated, ensureAdmin, updatePatientController.handle)
 
 export { patientRoutes }

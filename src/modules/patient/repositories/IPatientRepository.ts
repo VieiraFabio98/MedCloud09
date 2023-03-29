@@ -8,6 +8,7 @@ interface IPatientRepository{
   deletePatient(id: string): Promise<Patient>
   updatePatient(data: ICreatePatientDTO): Promise<Patient>
   findById(id: string): Promise<Patient>
+  findByEmail(email: string): Promise<Patient>
 }
 
 export { IPatientRepository}

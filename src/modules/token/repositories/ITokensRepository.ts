@@ -1,4 +1,5 @@
-import { PatientTokens } from "../typeorm/entities/Token"
+import { PatientTokens } from "../typeorm/entities/PatientToken"
+import { ICreateTokenDTO } from "../DTO/ICreateToken"
 
 interface ITokensRepository{
   create({
