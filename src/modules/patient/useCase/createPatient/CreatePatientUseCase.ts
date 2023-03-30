@@ -1,10 +1,7 @@
-
 import { AppError } from "../../../../shared/infra/errors/appError";
 import { inject, injectable } from "tsyringe";
-
 import { IPatientRepository } from "../../repositories/IPatientRepository";
-
-
+import { hash } from "bcrypt";
 
 
 interface IRequest{
@@ -12,7 +9,8 @@ interface IRequest{
   name: string,
   birth_date: string,
   email: string,
-  address: string
+  address: string,
+  password: string
 }
 
 @injectable()
@@ -28,7 +26,8 @@ class CreatePatientUseCase{
     name,
     email,
     birth_date,
-    address
+    address,
+    password
   }: IRequest): Promise<void>{
 
     const patientAlreadyExists = await this.patientRepository.findPatient(name)
@@ -41,7 +40,8 @@ class CreatePatientUseCase{
       name,
       email,
       birth_date,
-      address
+      address,
+      password
     })
 
   }

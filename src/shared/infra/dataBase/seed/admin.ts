@@ -10,7 +10,7 @@ async function create() {
   const password = await hash("admin", 8);
 
   await connection.query(
-    `INSERT INTO patient(id,name,email,senha,"is_admin",created_at,address, birth_date) 
+    `INSERT INTO patient(id,name,email,password,"is_admin",created_at,address, birth_date) 
     values ('${id}','admin','admin@medcloud.com','${password}',true,'now()','xxxx','yyyy')
     `
   )

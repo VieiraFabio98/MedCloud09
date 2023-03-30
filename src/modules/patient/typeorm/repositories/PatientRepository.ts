@@ -18,7 +18,8 @@ class PatientRepository implements IPatientRepository{
     name,
     address,
     email,
-    birth_date
+    birth_date,
+    password
   }:ICreatePatientDTO): Promise<Patient> {
     const patient = await this.repository.findOne(id)
 
@@ -31,7 +32,8 @@ class PatientRepository implements IPatientRepository{
       name,
       address,
       email,
-      birth_date
+      birth_date,
+      password
     })
 
     await this.repository.save(patientUpdate)
@@ -45,7 +47,8 @@ class PatientRepository implements IPatientRepository{
     name, 
     birth_date, 
     email, 
-    address
+    address,
+    password
   }: ICreatePatientDTO): Promise<void> {
     
       const patient = this.repository.create({
@@ -53,7 +56,8 @@ class PatientRepository implements IPatientRepository{
         name,
         birth_date,
         email,
-        address
+        address,
+        password
       })
 
       await this.repository.save(patient)

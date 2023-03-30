@@ -20,7 +20,7 @@ class Patient {
   address: string;
 
   @Column()
-  senha: string
+  password: string;
 
   @Column()
   is_admin: boolean;

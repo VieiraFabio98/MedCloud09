@@ -38,6 +38,15 @@ export class CreatePatient1679436595568 implements MigrationInterface {
                             name: "updated_at",
                             type: "timestamp",
                             default: "now()"
+                        },
+                        {
+                            name: "password",
+                            type: "varchar"
+                        },
+                        {
+                            name: "is_admin",
+                            type: "boolean",
+                            default: false
                         }
 
                     ]

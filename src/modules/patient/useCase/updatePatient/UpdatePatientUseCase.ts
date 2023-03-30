@@ -9,7 +9,8 @@ interface IRequest{
   name: string,
   email: string,
   address: string,
-  birth_date: string
+  birth_date: string,
+  password: string
 }
 
 @injectable()
@@ -25,14 +26,16 @@ class UpdatePatientUseCase {
     name,
     email,
     address,
-    birth_date
+    birth_date,
+    password
   }: IRequest): Promise<Patient>{
     const patient = await this.patientRepository.updatePatient({
       id,
       name,
       email,
       address,
-      birth_date
+      birth_date,
+      password
     }).then(patientupdated => {
       return patientupdated
     }).catch(error => {

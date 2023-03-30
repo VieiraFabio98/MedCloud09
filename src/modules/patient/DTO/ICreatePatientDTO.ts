@@ -4,6 +4,7 @@ interface ICreatePatientDTO{
   birth_date: string;
   email: string;
   address: string;
+  password: string;
 }
 
 export { ICreatePatientDTO}

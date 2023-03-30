@@ -7,7 +7,7 @@ import { container } from "tsyringe";
 class UpdatePatientController{
 
   async handle(request: Request, response: Response): Promise<Response>{
-    const {name, email, address, birth_date} = request.body
+    const {name, email, address, birth_date, password} = request.body
     const { id } = request.params
 
     const updatePatientUseCase = container.resolve(UpdatePatientUseCase)
@@ -16,7 +16,8 @@ class UpdatePatientController{
       name,
       email,
       address,
-      birth_date
+      birth_date,
+      password
     })
 
     return response.json(update)

@@ -48,7 +48,7 @@ class AuthenticateUseCase {
       throw new AppError("Email or password incorrect.", )
     }
 
-    const passwordMatch = await compare(password, patient.senha)
+    const passwordMatch = await compare(password, patient.password)
 
     if(!passwordMatch){
       throw new AppError("Email or password incorrect.");

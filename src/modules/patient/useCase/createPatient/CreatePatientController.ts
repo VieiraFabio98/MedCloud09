@@ -5,13 +5,14 @@ import { CreatePatientUseCase } from "./CreatePatientUseCase";
 
 class CreatePatientController{
   async handle(request: Request, response: Response): Promise<Response>{
-    const { name, birth_date, email, address } = request.body
+    const { name, birth_date, email, address, password } = request.body
     const createPatientUsecase = container.resolve(CreatePatientUseCase)
     await createPatientUsecase.execute({
       name, 
       birth_date,
       email,
-      address
+      address,
+      password
     })
 
     return response.status(201).json()
