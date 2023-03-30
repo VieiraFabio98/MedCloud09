@@ -32,6 +32,8 @@ class CreatePatientUseCase{
 
     const patientAlreadyExists = await this.patientRepository.findPatient(name)
 
+    const passwordEncrypted = await hash(password, 8);
+
     if(patientAlreadyExists){
       throw new AppError("Patient already exists.")
     }
@@ -41,7 +43,7 @@ class CreatePatientUseCase{
       email,
       birth_date,
       address,
-      password
+      password: passwordEncrypted
     })
 
   }
